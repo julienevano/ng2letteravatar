@@ -12,7 +12,7 @@ export class LAmeta {
     defaultRadius: string = 'border-radius:50%;';
     deafultDynamic: string = 'false';
     defaultRotatedeg: string = '0';
-    defaultAvatarborder:string = 'false';
+    defaultAvatarborder: string = 'false';
     defaultFontWeight: string = '400';
     defaultFontFamily: string = 'HelveticaNeue-Light,Helvetica Neue Light,Helvetica Neue,Helvetica, Arial,Lucida Grande, sans-serif';
 }
@@ -33,7 +33,7 @@ export class Attributes {
     shape: string = 'avatar-shape';
     data: string = 'avatar-data';
     rotatedeg: string = 'avatar-rotate-degree';
-    avatarborder:string = 'avatar-border';
+    avatarborder: string = 'avatar-border';
 
 }
 
@@ -73,8 +73,8 @@ export class Ng2LetterAvatar implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-//        console.log('input data:' + this.data);
-//        console.log('element data:' + this.letteravatar['data']);
+        //  console.log('input data:' + this.data);
+        //  console.log('element data:' + this.letteravatar['data']);
         if (!this.alphabetcolors) {
             this.alphabetcolors = this.getPropertyValue(this.attribute.alphabetcolors) ?
                 this.getPropertyValue(this.attribute.alphabetcolors) : this._meta.defaultColors;
@@ -83,15 +83,15 @@ export class Ng2LetterAvatar implements OnInit, OnDestroy, AfterViewInit {
             this.textColor = this.getPropertyValue(this.attribute.textColor) ?
                 this.getPropertyValue(this.attribute.textColor) : this._meta.defaultTextColor;
         }
-        if(!this.avatarcustombgcolor){
+        if (!this.avatarcustombgcolor) {
             this.avatarcustombgcolor = this.getPropertyValue(this.attribute.avatarcustombgcolor);
         }
-        
+
         if (!this.avatarborder) {
             this.avatarborder = this.getPropertyValue(this.attribute.avatarborder) ?
                 this.getPropertyValue(this.attribute.avatarborder) : this._meta.defaultAvatarborder;
         }
-        
+
         if (!this.defaultBorder) {
             this.defaultBorder = this.getPropertyValue(this.attribute.defaultBorder) ?
                 this.getPropertyValue(this.attribute.defaultBorder) : this._meta.defaultBorder;
@@ -140,6 +140,7 @@ export class Ng2LetterAvatar implements OnInit, OnDestroy, AfterViewInit {
         }
         this.createAvatar();
     }
+
     private getPropertyValue(property: string): any {
         let result: any = '';
         result = this.letteravatar.getAttribute(property);
@@ -184,7 +185,7 @@ export class Ng2LetterAvatar implements OnInit, OnDestroy, AfterViewInit {
         var _style = '';
         if (this.avatarBorderStyle) {
             _style = this.avatarBorderStyle;
-        } else if(this.avatarborder === 'true'){
+        } else if (this.avatarborder === 'true') {
             _style = this.defaultBorder;
         }
 
@@ -225,39 +226,40 @@ export class Ng2LetterAvatar implements OnInit, OnDestroy, AfterViewInit {
         lvTag.appendChild(this.imageTag.cloneNode());
         return this.imageTag.outerHTML;
     }
+
     /**
- * Populate the svg tag which will used for the avatar generation
- * @param {type} width
- * @param {type} height
- * @param {type} color
- * @returns {unresolved}
- */
-    private createSvg(width, height, color, cobj): string {
+     * Populate the svg tag which will used for the avatar generation
+     * @param {type} width
+     * @param {type} height
+     * @param {type} color
+     * @returns {unresolved}
+     */
+    private createSvg(width: string, height: string, color: string, cobj: Node): string {
 
         var svgTag = document.createElement('svg');
         svgTag.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
         svgTag.setAttribute('pointer-events', 'none');
         svgTag.setAttribute('width', width);
         svgTag.setAttribute('height', height);
-        svgTag.setAttribute('style', 'background-color:' + color + ';width:' + width + 'px' + ';height:' + height + 'px');
-        //svgTag.insertAdjacentHTML('beforeend', cobj)
+        svgTag.setAttribute('style', `background-color:${color}; width:${width}px; height:${height}px`);
+        //  svgTag.insertAdjacentHTML('beforeend', cobj)
         svgTag.appendChild(cobj);
-        //svgTag.innerHTML = cobj;
+        //  svgTag.innerHTML = cobj;
         this.imageTag = svgTag;
 
         return svgTag.innerHTML;
     }
 
     /**
- *  Generate the Letter tag by using the svg text element
- * @param {type} character
- * @param {type} textColor
- * @param {type} fontFamily
- * @param {type} fontWeight
- * @param {type} fontsize
- * @returns {unresolved}
- */
-    private getCharacterTextTag(character, textColor, fontFamily, fontWeight, fontsize): HTMLElement {
+     *  Generate the Letter tag by using the svg text element
+     * @param {type} character
+     * @param {type} textColor
+     * @param {type} fontFamily
+     * @param {type} fontWeight
+     * @param {type} fontsize
+     * @returns {unresolved}
+     */
+    private getCharacterTextTag(character: string, textColor: string, fontFamily: string, fontWeight: string, fontsize: string): HTMLElement {
         var textTag = document.createElement('text');
         textTag.setAttribute('text-anchor', 'middle');
         textTag.setAttribute('x', '50%');
@@ -266,14 +268,14 @@ export class Ng2LetterAvatar implements OnInit, OnDestroy, AfterViewInit {
         textTag.setAttribute('pointer-events', 'auto');
         textTag.setAttribute('fill', textColor);
         textTag.setAttribute('font-family', fontFamily);
-        textTag.setAttribute('style', 'font-weight:' + fontWeight + ';font-size:' + fontsize + 'px');
+        textTag.setAttribute('style', `font-weight:${fontWeight} ;font-size:${fontsize}px`);
         textTag.innerText = character;
         return textTag;
     }
 
-     /**
-     * Need to work on this in later releases
-     */
+    /**
+    * Need to work on this in later releases
+    */
     ngOnInit() {
     }
 
@@ -281,10 +283,11 @@ export class Ng2LetterAvatar implements OnInit, OnDestroy, AfterViewInit {
      * Need to work on this in later releases
      */
     ngOnDestroy() {
-        }
     }
+}
+
 /**
- * Get the random colors 
+ * Get the random colors
  * @returns {String}
  */
 function getRandomColors() {
@@ -295,12 +298,13 @@ function getRandomColors() {
     }
     return _color;
 }
+
 /**
  * get the first name and last name first letters and combined and form the letter avatar
  * @param {type} data
  * @returns {unresolved}
  */
-function getFirstAndLastName(data) {
+function getFirstAndLastName(data: string) {
     var names = data.split(" ");
     if (names && names.length >= 2) {
         var firstName = names[0];

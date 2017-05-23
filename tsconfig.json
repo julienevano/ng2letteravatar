@@ -1,17 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES5",
-    "module": "system",
-    "moduleResolution": "node",
-    "sourceMap": true,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": false,
-    "noImplicitAny": false
+    "lib": ["es2015", "dom"],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "outDir": "./",
+    "sourceMap":   true,
+    "target": "es5",
+    "types": [
+      "node"
+    ]
   },
+  "files": ["./ng2letteravatar.ts"],
   "exclude": [
-    "node_modules",
-    "typings/main",
-    "typings/main.d.ts"
+    "node_modules"
   ]
 }
